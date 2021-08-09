@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: es-deployment
+  labels:
+    app: es
+spec:
+  selector:
+    matchLabels:
+      app: es 
+  template:
+    metadata:
+      labels:
+        app: es
+    spec:
+      containers:
+      - name: elasticsearch
+        image: elasticsearch:7.14.0
+        env:
+        - name: discovery.type
+          value: single-node 
+        ports:
+        - containerPort: 9200
